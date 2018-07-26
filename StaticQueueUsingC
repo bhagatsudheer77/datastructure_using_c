@@ -58,6 +58,24 @@ void deQueue()
         }
     }
 }
+
+void displayQueue ()
+{
+  int i;
+  if (front == -1)
+  {
+      printf ("Queue is empty");
+  }
+  else
+  {
+      printf ("Queue : |");
+      for (i = front; i <= rear; i++)
+	     {
+	       printf (" %d |", queue[i]);
+	     }
+    }
+}
+
 void main()
 {
     clrscr();
