@@ -1,5 +1,6 @@
 /******************************************************************************
- Static Queue : means queue using array. size of queue is fixed in advance like array, thats why we can only add number of elements equal to size of queue.    
+ Static Queue : means queue using array. size of queue is fixed in advance like array, 
+ thats why we can only add number of elements equal to size of queue.    
 *******************************************************************************/
 
 #include<stdio.h>
