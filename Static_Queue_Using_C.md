@@ -1,0 +1,101 @@
+/****************************************************************************** 
+Static Queue : means queue using array. size of queue is fixed in advance like array,
+thats why we can only add number of elements equal to size of queue.
+*******************************************************************************/
+
+#include<stdio.h>
+#include<conio.h> 
+
+#define size 4                  // define size of queue, as per our requirement
+
+int queue[size];                // declare array for queue 
+int front = -1;                 // Initialy as queue is emepty, set front to -1 
+int rear = -1;                  // Initialy as queue is emepty, set rear to -1
+
+// enQueue => Adding element in queue, at rear end of queue 
+void enQueue(int value) 
+{ 
+    // Before adding element check for full, if rear is equal to size-1 means queue is full 
+    if ( rear == size-1 ) 
+    { 
+        printf("Queue is full, we can not insert"); 
+        
+    } 
+    else 
+    { 
+        if ( front == -1 ) 
+        {
+            //At first insertion move both to 0, Otherwise while deleting element it may say empty queue(as front reamins -1) 
+            front = 0; 
+            rear = 0;
+        }
+        else
+        { 
+            // Otherwise only increment rear rear++; }
+            queue[rear] = value;
+        }
+    }
+}
+
+// enQueue => Deleting element from queue, from front end 
+void deQueue() 
+{
+    // Before deleting an element check for empty, if front is equal to -1 means queue is empty
+    if ( front == -1 ) 
+    {
+        printf("Queue is empty, we can not delete"); 
+        
+    }
+    else
+    { 
+        printf("Deleted Value %d",queue[front]); // display deleted element 
+        if ( front == rear ) 
+         { 
+             //When front == rear, means last element in queue, so after deleteing last element, make both front & rear = -1 
+             front = -1; 
+             rear = -1; 
+        } 
+        else 
+        { 
+            //Otherwise means there are more elements to delete, so just move front to next element 
+            front++;
+        } 
+    } 
+} 
+void displayQueue()
+{
+    int i; 
+    if ( front == -1 ) 
+    {
+        printf("Queue is empty");
+        }
+        else 
+        {
+            printf("Queue : |"); 
+            for ( i = front ; i <= rear ; i++ )
+            {
+                printf(" %d |",queue[i]);
+            }
+        } 
+} 
+int main()
+{ 
+    clrscr(); 
+    enQueue(10); 
+    enQueue(20);
+    deQueue();
+    enQueue(30);
+    enQueue(40);
+    enQueue(50); 
+    enQueue(60); 
+    displayQueue();
+    deQueue();
+    deQueue(); 
+    deQueue();
+    deQueue(); 
+    deQueue();
+    deQueue();
+    displayQueue(); 
+    getch();
+    return 0;
+}
