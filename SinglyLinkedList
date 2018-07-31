@@ -1,1 +1,73 @@
-# datastructure_using_c
+/******************************************************************************
+Singly Linked List : 10 -> 20 -> 30
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+// function which create a Linked list with n-number of nodes
+struct node *create(struct node *start)
+{
+    int n,i;
+    struct node *newNode,*last;
+ 
+    printf("Enter how many nodes you want to insert : ");
+    scanf("%d",&n);
+   
+    for( i = 1 ; i <= n ; i++ )
+    {
+        // create new node and accept data and set next part as NULL by default
+        newNode = (struct node*)malloc(sizeof(struct node)); 
+        newNode->next = NULL;
+        // Accept data in node
+        printf("Enter data : ");
+        scanf("%d",&newNode->data);    
+        if ( start == NULL )         // if start is NULL, means LL is empty
+        {
+            start = newNode;        // as LL is empty, making newNode as a starting node
+            last = newNode;         // keep last nodes track in last pointer
+        }
+        else
+        {
+            last->next = newNode;  // place new node next to last, which we maintained 
+            last = newNode;        // keep last nodes track in last pointer
+        }
+    }
+    
+    return start;
+}
+
+// function which displays whole Linked list
+void displayLinkedList(struct node *start)
+{
+    struct node *curr;
+    
+    if ( start == NULL )           // if start is NULL, means LL is empty
+    {
+        printf("Linked List is empty.");  // give error message
+    }
+    else
+    {
+        printf("Linked List is : ");
+        curr = start;                    // Move curr to starting node of Linked List
+        while ( curr != NULL )           // move till curr does not become NULL
+        {
+            printf("%d -> ",curr->data);  // display node's data
+            curr = curr->next;            // Move curr to next node
+        }  
+    }
+}
+
+int main()
+{
+    struct node *start = NULL;          // Declare start and set NULL to start, to indicate LL is empty 
+    start = create(start);              // Call create() function to create a LL
+    displayLinkedList(start);           // call displayLinkedList() function to display LL
+    return 0;
+}
+
