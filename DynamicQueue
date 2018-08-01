@@ -1,0 +1,94 @@
+/*
+Dynamic Queue : Linked List Representation of Queue
+*/
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+struct node *front = NULL;
+struct node *rear = NULL;
+
+// function which inserts node in queue
+void enQueue(int value)
+{
+    struct node *newNode;
+ 
+    // create new node and accept data and set next part as NULL by default
+    newNode = (struct node*)malloc(sizeof(struct node)); 
+    newNode->next = NULL;
+    newNode->data = value;
+    
+    if ( rear == NULL )         // if rear is NULL, means queue is empty
+    {   
+        front = newNode;        // as queue is empty, move front as well as rear to newNode
+        rear = newNode;         // as queue is empty, move front as well as rear to newNode
+    }
+    else
+    {
+        rear->next = newNode;  // place new node next to rear 
+        rear = newNode;        // move rear to new inserted node
+    }
+}
+
+// function which inserts node in queue
+void deQueue()
+{
+    struct node *nodeToDelete;
+
+    if ( front == NULL )         // if ront is NULL, means Queue is empty
+    {   
+        printf("Queue is empty");
+    }
+    else
+    {
+        nodeToDelete = front;
+        printf("Deleted Element = %d",nodeToDelete->data);   //display deleted element
+        
+        if ( front == rear )    // If front == rear, means there is only one node
+        {
+            front = NULL;
+            rear = NULL;
+        }
+        else
+        {
+            //front != rear, means there is more than one node, just move front to next node
+            front = front->next;
+        }
+        free(nodeToDelete);
+    }
+}
+
+// function which displays whole Queue
+void displayQueue()
+{
+    struct node *curr;
+    if ( front == NULL )           // if front is NULL, means Queue is empty
+    {
+        printf("Queue is empty.");  // give error message
+    }
+    else
+    {
+        printf("Queue is : |");
+        curr = front;                    // Move curr to front of Queue
+        while ( curr != NULL )           // move till curr does not become NULL
+        {
+            printf(" %d |",curr->data);  // display node's data
+            curr = curr->next;            // Move curr to next node
+        }  
+    }
+}
+
+int main()
+{
+    enQueue(10);
+    enQueue(20);
+    enQueue(30);
+    displayQueue();
+    deQueue();
+    displayQueue();
+    return 0;
+}
