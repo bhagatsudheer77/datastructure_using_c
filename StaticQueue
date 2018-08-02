@@ -1,0 +1,97 @@
+/*
+   Static stack
+*/
+
+#include <stdio.h>
+#define size 5
+
+int queue[size]; 
+int front = -1;
+int rear = -1;
+
+void enQueue(int value)
+{
+    int add_item;
+    // If front == size-1, means queue is full
+    if (rear == size - 1)
+    {
+        printf("Queue is full \n");
+    }
+    else
+    {
+        if ( front == - 1 ) // means queue is empty
+        {
+            // make front and rear both as 0
+            front = 0;
+            rear = 0;
+        }
+        else
+        {
+            // If queue is not empty, increment rear only
+            rear = rear + 1;   
+        }
+        //And store value at rear
+        queue[rear] = value;
+    }
+} 
+
+void deQueue()
+{
+    // If front == -1, means queue is empty
+    if ( front == - 1 )
+    {
+        printf("Queue is empty \n");
+    }
+    else
+    {
+        printf("Deleted element : %d\n", queue[front]);
+        if ( front == rear )  
+        {
+           // If front == rear, means there is only one element in queue
+           //So after deletion of that elt queue become, 
+           // so set front and rear as -1
+            front = -1;
+            rear = -1;
+        }
+        else
+        { 
+            //If fthere are multiple elements, just increment front to next element
+            front = front + 1;
+        }
+    }
+} 
+
+void displayQueue()
+{
+    int i;
+    // If front == -1, means queue is empty
+    if ( front == -1 )
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        printf("Queue is : |");
+        i = front;          // copy front into i
+        while ( i <= rear )
+        {
+            printf(" %d |",queue[i]);//diplay values from front to rear
+            i++;
+        }
+    }
+}
+
+int main()
+{
+    enQueue(10);
+    enQueue(20);
+    enQueue(30);
+    displayQueue();
+    deQueue();
+    displayQueue();
+    deQueue();
+    deQueue();
+    deQueue();
+    displayQueue();
+    return 0;
+}
