@@ -1,0 +1,70 @@
+#include <stdio.h>
+#define size 5
+
+int stack[size]; 
+int top = -1;
+
+// Push => insert the new element at top end.
+void push(int value)
+{
+    if ( top == size-1)                       // If top == size-1, means stack is full
+    {
+        printf("stack is full \n");
+    }
+    else
+    {
+        // increment the top
+        top++;
+        //And store value into stack at top
+        stack[top] = value;
+    }
+} 
+
+
+// Pop => delete the topmost element from stack
+void pop()
+{
+    if ( top == -1 )                                     // If top == -1, means stack is empty
+    {
+        printf("Stack is empty \n");
+    }
+    else
+    {
+        printf("Deleted element : %d\n", stack[top]);   //Display deleted element
+        top--;    // Decrement top 
+    }
+} 
+
+void displayStack()
+{
+    int i;
+    if ( top == -1 )                     // If top == -1, means stack is empty
+    {
+        printf("Stack is empty");
+    }
+    else
+    {
+        printf("Stack is : \n");
+        i = top;                        // copy top into i
+        while ( i >= 0 )
+        {
+            printf(" %d \n",stack[i]);
+            i--;
+        }
+    }
+}
+
+int main()
+{
+    push(10);
+    push(20);
+    push(30);
+    displayStack();
+    pop();
+    displayStack();
+    pop();
+    pop();
+    pop();
+    displayStack();
+    return 0;
+}
